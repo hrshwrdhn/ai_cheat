@@ -31,9 +31,17 @@ Tensor is a multi-dimensional matrix containing elements of a single data type
 A tensor with a single number
 ```
 t1 = torch.tensor(4.)
-t1
+
 ```
 **OUTPUT**
 ```
 tensor(4.)
+```
+Checking the dtype attribute of our tensor.
+```
+t1.dtype
+```
+**OUTPUT**
+```
+torch.float32
 ```
