@@ -72,3 +72,27 @@ tensor([[[11., 12., 13.],
         [[15., 16., 17.],
          [17., 18., 19.]]])
 ```
+Note: *torch.tensor()* always copies data. If you have a Tensor data and just want to change its *requires_grad* flag, use *requires_grad_()* or *detach()* to avoid a copy. If you have a numpy array and want to avoid a copy, use *torch.as_tensor()*
+
+### Shape
+To inspect the length along each dimension using the **.shape** property of a tensor.
+```
+>>> print(t2)
+>>>t2.shape
+
+tensor([1., 2., 3., 4.])
+torch.Size([4])
+
+>>>print(t4)
+>>>t4.shape
+
+tensor([[[11., 12., 13.],
+         [13., 14., 15.]],
+
+        [[15., 16., 17.],
+         [17., 18., 19.]]])
+
+torch.Size([2, 2, 3])
+```
+Note: it's not possible to create tensors with an improper shape
+
