@@ -111,18 +111,20 @@ tensor([[42, 42],
 t7 = torch.cat((t3, t6))
 t7
 ```
+```
 tensor([[ 5.,  6.],
         [ 7.,  8.],
         [ 9., 10.],
         [42., 42.],
         [42., 42.],
         [42., 42.]])
-        
+ ```       
         
 **Compute the sin of each element**
 ```
 t8 = torch.sin(t7)
 t8
+```
 ```
 tensor([[-0.9589, -0.2794],
         [ 0.6570,  0.9894],
@@ -130,11 +132,12 @@ tensor([[-0.9589, -0.2794],
         [-0.9165, -0.9165],
         [-0.9165, -0.9165],
         [-0.9165, -0.9165]])
-
+````
 **Change the shape of a tensor**
 ```
 t9 = t8.reshape(3, 2, 2)
 t9
+```
 ```
 tensor([[[-0.9589, -0.2794],
          [ 0.6570,  0.9894]],
@@ -142,5 +145,14 @@ tensor([[[-0.9589, -0.2794],
          [-0.9165, -0.9165]],
         [[-0.9165, -0.9165],
          [-0.9165, -0.9165]]])
-
-
+```
+ # Interoperability with Numpy
+ #### Convert the numpy array to a torch tensor.
+```
+y = torch.from_numpy(x)
+```
+#### Convert a torch tensor to a numpy array
+```
+z = y.numpy()
+```
+The numpy array and torch tensor have similar data types. check ``x.dtype``, ``y.dtype``
