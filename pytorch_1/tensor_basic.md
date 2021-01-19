@@ -96,3 +96,32 @@ torch.Size([2, 2, 3])
 ```
 Note: it's not possible to create tensors with an improper shape
 
+# Tensor functions
+
+**Create a tensor with a fixed value for every element**
+```
+torch.full((3, 2), 42)
+```
+tensor([[42, 42],
+        [42, 42],
+        [42, 42]])
+        
+**Concatenate two tensors with compatible shapes**
+```
+t7 = torch.cat((t3, t6))
+t7
+```
+tensor([[ 5.,  6.],
+        [ 7.,  8.],
+        [ 9., 10.],
+        [42., 42.],
+        [42., 42.],
+        [42., 42.]])
+        
+        
+**Compute the sin of each element**
+```
+t8 = torch.sin(t7)
+t8
+```
+
