@@ -26,3 +26,14 @@ Tensor is a multi-dimensional matrix containing elements of a single data type
 |32-bit integer (signed) | torch.int32 or torch.int | torch.IntTensor | torch.cuda.IntTensor |
 |64-bit integer (signed) | torch.int64 or torch.long | torch.LongTensor | torch.cuda.LongTensor |
 | Boolean | torch.bool | torch.BoolTensor | torch.cuda.BoolTensor |
+
+### PyTorch is a library for processing tensors. A tensor is a number, vector, matrix, or any n-dimensional array.
+A tensor with a single number
+```
+t1 = torch.tensor(4.)
+t1
+```
+**OUTPUT**
+```
+tensor(4.)
+```
