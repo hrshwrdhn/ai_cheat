@@ -130,7 +130,7 @@ loss = mse(preds, targets)
 print(loss)
 ```
 #### step 9 Reset the gradients to zero by invoking the  `.zero_()` method.
-Before proceed, Reset the gradients to zero by invoking the `.zero_()` method. We need to do this because PyTorch accumulates gradients. Otherwise, the next time we invoke .backward on the loss, the new gradient values are added to the existing gradients, which may lead to unexpected results.
+Before proceed, Reset the gradients to zero by invoking the `.zero_()` method. We need to do this because PyTorch accumulates gradients. Otherwise, the next time on invoking `.backward` on the loss, the new gradient values are added to the existing gradients, which may lead to unexpected results.
 ```
 w.grad.zero_()
 b.grad.zero_()
