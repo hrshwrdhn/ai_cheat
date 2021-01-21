@@ -97,12 +97,7 @@ The gradients are stored in the `.grad` property of the respective tensors. Not
 The loss is a quadratic function of our weights and biases, and our objective is to find the set of weights where the loss is the lowest.
 the gradient indicates the rate of change of the loss, i.e., the loss function's slope
 
-## Step 7: update weights and bias
-```
- with torch.no_grad():
-    w -= w.grad * 1e-5
-    b -= b.grad * 1e-5
- ```
+
 
 ## the gradient descent_ optimization algorithm
 
@@ -122,3 +117,29 @@ If a gradient element is **negative**:
 
 The increase or decrease in the loss by changing a weight element is proportional to the gradient of the loss w.r.t. that element. This observation forms the basis of _the gradient descent_ optimization algorithm.
 Subtract from each weight element a small quantity proportional to the derivative of the loss w.r.t. that element to reduce the loss slightly.
+
+#### Step 7: update weights and bias
+```
+ with torch.no_grad():
+    w -= w.grad * 1e-5
+    b -= b.grad * 1e-5
+ ```
+#### step 8: verify that the loss is actually lower
+```
+loss = mse(preds, targets)
+print(loss)
+```
+#### step 9 Reset the gradients to zero by invoking the  `.zero_()` method.
+Before proceed, Reset the gradients to zero by invoking the `.zero_()` method. We need to do this because PyTorch accumulates gradients. Otherwise, the next time we invoke .backward on the loss, the new gradient values are added to the existing gradients, which may lead to unexpected results.
+```
+w.grad.zero_()
+b.grad.zero_()
+print(w.grad)
+print(b.grad)
+```
+Output: 
+```
+tensor([[0., 0., 0.],
+        [0., 0., 0.]])
+tensor([0., 0.])
+```
