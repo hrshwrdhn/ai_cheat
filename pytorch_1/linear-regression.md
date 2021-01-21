@@ -89,6 +89,7 @@ loss = mse(preds, targets)
 With PyTorch, we can automatically compute the gradient or derivative of the loss w.r.t. to the weights and biases because they have `requires_grad` set to `True`. 
 ```
 gradient_wrt_w = w.grad
+
 ```
 The gradients are stored in the `.grad` property of the respective tensors. Note that the derivative of the loss w.r.t. the weights matrix is itself a matrix with the same dimensions.
 
@@ -96,6 +97,12 @@ The gradients are stored in the `.grad` property of the respective tensors. Not
 The loss is a quadratic function of our weights and biases, and our objective is to find the set of weights where the loss is the lowest.
 the gradient indicates the rate of change of the loss, i.e., the loss function's slope
 
+## Step 7: update weights and bias
+```
+ with torch.no_grad():
+    w -= w.grad * 1e-5
+    b -= b.grad * 1e-5
+ ```
 
 ## the gradient descent_ optimization algorithm
 
