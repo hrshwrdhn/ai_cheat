@@ -64,7 +64,7 @@ preds = model(inputs)
 print(preds)
 ```
 ### Loss function
-#### mean squared error
+#### mean squared error (MSE)
 To compare the model's predictions with the actual targets using  **mean squared error** (MSE).
 
 * Calculate the difference between the two matrices (`preds` and `targets`).
