@@ -59,7 +59,17 @@ def model(x):
 ```
 `@` represents matrix multiplication in PyTorch, and the `.t` method returns the transpose of a tensor.
 #### step5: Generate predictions
+```
 preds = model(inputs)
 print(preds)
+```
+### Loss function
+#### mean squared error
+To compare the model's predictions with the actual targets using  **mean squared error** (MSE).
+
+* Calculate the difference between the two matrices (`preds` and `targets`).
+* Square all elements of the difference matrix to remove negative values.
+* Calculate the average of the elements in the resulting matrix.
+
 
 
