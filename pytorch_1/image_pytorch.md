@@ -51,4 +51,30 @@ torch.Size([1, 28, 28]) 5
 The image is now converted to a 1x28x28 tensor. The first dimension tracks color channels. The second and third dimensions represent pixels along the height and width of the image, respectively. Since images in the MNIST dataset are grayscale, there's just one channel. Other datasets have images with color, in which case there are three channels: red, green, and blue (RGB). 
 
 
+```
+print(torch.max(img_tensor), torch.min(img_tensor))
+plt.imshow(img_tensor[0,10:15,10:15], cmap='gray');
+```
+
+
+
+
+
+
+
+
+
+
+
+
+## Training and Validation Datasets
+to split the dataset into three parts:
+1. **Training set** - used to train the model, i.e., compute the loss and adjust the model's weights using gradient descent.
+2. **Validation set** - used to evaluate the model during training, adjust hyperparameters (learning rate, etc.), and pick the best version of the model.
+3. **Test set** - used to compare different models or approaches and report the model's final accuracy.
+
+## To set aside 10,000 randomly chosen images for validation. We can do this using the `random_spilt` method from PyTorch.
+```
+
+
 
