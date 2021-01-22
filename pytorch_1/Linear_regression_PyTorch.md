@@ -1,8 +1,8 @@
 # Linear regression using PyTorch built-ins
 
 In deep learning, PyTorch provides several built-in functions and classes to make it easy to create and train models with just a few lines of code.
-* `torch.nn` package from PyTorch contains utility classes for building neural networks.
 
+* `torch.nn` package from PyTorch contains utility classes for building neural networks.
 ```
 import torch.nn as nn
 ```
@@ -49,7 +49,7 @@ targets = torch.from_numpy(targets)
 ```
 
 ## Dataset and DataLoader
-`TensorDataset`, which allows access to rows from `inputs` and `targets` as tuples, and provides standard APIs for working with many different types of datasets in PyTorch.
+* `TensorDataset`, which allows access to rows from `inputs` and `targets` as tuples, and provides standard APIs for working with many different types of datasets in PyTorch.
 ```
 from torch.utils.data import TensorDataset
 # Define dataset
@@ -66,15 +66,16 @@ Output:
          [ 81., 101.],
          [119., 133.]]))
 ```
-The `TensorDataset` allows to access a small section of the training data using the array indexing notation (`[0:3]` in the above code). It returns a tuple with two elements. The first element contains the input variables for the selected rows, and the second contains the targets.
-# data split in batches
-create a DataLoader, which can split the data into batches of a predefined size while training. It also provides other utilities like shuffling and random sampling of the data.
+* The `TensorDataset` allows to access a small section of the training data using the array indexing notation (`[0:3]` in the above code). It returns a tuple with two elements. The first element contains the input variables for the selected rows, and the second contains the targets.
+
+## data split in batches
+* create a DataLoader, which can split the data into batches of a predefined size while training. It also provides other utilities like shuffling and random sampling of the data.
 ```
 from torch.utils.data import DataLoader
 batch_size = 5
 train_dl = DataLoader(train_ds, batch_size, shuffle=True)
 ```
-In each iteration, the data loader returns one batch of data with the given batch size. If shuffle is set to True, it shuffles the training data before creating batches. Shuffling helps randomize the input to the optimization algorithm, leading to a faster reduction in the loss.
+* In each iteration, the data loader returns one batch of data with the given batch size. If shuffle is set to True, it shuffles the training data before creating batches. Shuffling helps randomize the input to the optimization algorithm, leading to a faster reduction in the loss.
 ```
 # using the data loader in a for loop to look 
 for xb, yb in train_dl:
@@ -83,7 +84,7 @@ for xb, yb in train_dl:
     break
 ```
 
-#### check output 
+Output 
 ```
 tensor([[ 73.,  66.,  44.],
         [ 87., 134.,  58.],
@@ -97,9 +98,9 @@ tensor([[ 57.,  69.],
         [ 22.,  37.]])
 
 ```
-# nn.Linear
+## nn.Linear
 
-Instead of initializing the weights & biases manually, we can define the model using the `nn.Linear` class from PyTorch, which does it automatically.
+* Instead of initializing the weights & biases manually, we can define the model using the `nn.Linear` class from PyTorch, which does it automatically.
 ```
 # Define model
 model = nn.Linear(3, 2)
@@ -114,15 +115,15 @@ tensor([[0.5059, 0.5470, 0.1034],
 Parameter containing:
 tensor([ 0.1677, -0.1366], requires_grad=True)
 ```
-PyTorch models also have a helpful .parameters method, which returns a list containing all the weights and bias matrices present in the model. 
+* PyTorch models also have a helpful `.parameters` method, which returns a list containing all the weights and bias matrices present in the model. 
 For this linear regression model,there is one weight matrix and one bias matrix.
 
-# generate predictions 
+## generate predictions 
 ```
 preds = model(inputs)
 ```
 
-# Loss Function
+## Loss Function
 The `nn.functional` package contains many useful loss functions and several other utilities. 
 ```
 # Import nn.functional
@@ -152,8 +153,8 @@ We are now ready to train the model. We'll follow the same process to implement 
 4. Adjust the weights by subtracting a small quantity proportional to the gradient
 5. Reset the gradients to zero
 
-The only change is that we'll work batches of data instead of processing the entire training data in every iteration. 
-#### Define a utility function fit that trains the model for a given number of epochs
+* The only change is to work batches of data instead of processing the entire training data in every iteration. 
+## Define a utility function fit that trains the model for a given number of epochs
 ```
 # Utility function to train the model
 def fit(num_epochs, model, loss_fn, opt, train_dl):
@@ -183,15 +184,12 @@ def fit(num_epochs, model, loss_fn, opt, train_dl):
         if (epoch+1) % 10 == 0:
             print('Epoch [{}/{}], Loss: {:.4f}'.format(epoch+1, num_epochs, loss.item()))
 ```
-Some things to note above:
+## note: 
+* This example use data loader defined earlier to get batches of data for every iteration.
+* Instead of updating parameters (weights and biases) manually, `opt.step` is used to perform the update and `opt.zero_grad` to reset the gradients to zero.
+* added a log statement that prints the loss from the last batch of data for every 10th epoch to track training progress. `loss.item` returns the actual value stored in the loss tensor.
 
-    We use the data loader defined earlier to get batches of data for every iteration.
-
-    Instead of updating parameters (weights and biases) manually, we use opt.step to perform the update and opt.zero_grad to reset the gradients to zero.
-
-    We've also added a log statement that prints the loss from the last batch of data for every 10th epoch to track training progress. loss.item returns the actual value stored in the loss tensor.
-
-Let's train the model for 100 epochs.
+## Train the model for 100 epochs.
 
 ```
 fit(100, model, loss_fn, opt, train_dl)
