@@ -26,4 +26,29 @@ Output
 ```
 It's a pair, consisting of a 28x28px image and a label. The image is an object of the class `PIL.Image.Image`, which is a part of the Python imaging library [Pillow](https://pillow.readthedocs.io/en/stable/). 
 TO view the image within Jupyter using [`matplotlib`](https://matplotlib.org/), the de-facto plotting and graphing library for data science in Python.
+
+The statement `%matplotlib inline` indicates to Jupyter that we want to plot the graphs within the notebook. Without this line, Jupyter will show the image in a popup. Statements starting with `%`are called magic commands and are used to configure the behavior of Jupyter itself. 
+
 ```
+image, label = dataset[0]
+plt.imshow(image, cmap='gray')
+print('Label:', label)
+```
+PyTorch datasets allow us to specify one or more transformation functions that are applied to the images as they are loaded. The `torchvision.transforms` module contains many such predefined functions. We'll use the `ToTensor` transform to convert images into PyTorch tensors.
+```
+import torchvision.transforms as transforms
+# MNIST dataset (images and labels)
+dataset = MNIST(root='data/', 
+                train=True,
+                transform=transforms.ToTensor())
+img_tensor, label = dataset[0]
+print(img_tensor.shape, label)
+```
+output:
+```
+torch.Size([1, 28, 28]) 5
+```
+The image is now converted to a 1x28x28 tensor. The first dimension tracks color channels. The second and third dimensions represent pixels along the height and width of the image, respectively. Since images in the MNIST dataset are grayscale, there's just one channel. Other datasets have images with color, in which case there are three channels: red, green, and blue (RGB). 
+
+
+
