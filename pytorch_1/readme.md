@@ -15,3 +15,6 @@
 
 [Linear regression using PyTorch built-ins](https://github.com/hrshwrdhn/ai_cheat/blob/main/pytorch_1/Linear_regression_PyTorch.md)
 
+#### Image classification 
+[Image datapreparation for model in torch](https://github.com/hrshwrdhn/ai_cheat/blob/main/pytorch_1/img_class_torch_dataprepare.md)
+
